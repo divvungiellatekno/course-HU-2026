@@ -196,8 +196,7 @@ layout: two-cols
 The term language technology is restricted to actual processing of language
 data — be it speech or text or video (as when processing signed languages).
 
-The ultimate dream of language technology has been speech-to-speech machine translation
-of unrestricted language:
+The ultimate dream of language technology was from early on speech-to-speech machine translation of unrestricted language:
 
 <a href="https://poetsandquants.com/2014/07/02/when-translators-make-sense-for-applicants/">
 <img src="/spoken-MT-images.jpg" class="h-75 rounded shadow" />
@@ -219,6 +218,7 @@ Image source
 </a>
 
 We are here now!
+
 
 ---
 
@@ -297,9 +297,15 @@ That is, the dominating language technology paradigm — machine learning & neur
 
 Especially since normativity and language care and support is typically much more central to minorities.
 
+```sh
+Note that things are developing very fast, we have not seen the end of ML progress.
+Still, the note about normativity is a real concern.
+```
+
 But more on that later, and on what it can offer.
 
 </v-clicks>
+
 
 ---
 
@@ -383,12 +389,13 @@ layout: section
 * scalability in two dimensions: languages x tools/products
 * standardised dir & file structure
 * encourages and facilitates international cooperation
-* ~150 languages in our infra (at various stages), 30+ in active development
+* ~160 languages in our infra (at various stages), 30+ in active development
     * almost all of them minority languages
     * majority language grammars and LT resources mainly to support the minority languages
       (but we do not exclude anyone)
 
 </v-clicks>
+
 
 ---
 
