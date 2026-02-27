@@ -14,11 +14,6 @@ const audioSrc = computed(() => {
   return `${base}${cleanSrc}`
 })
 
-const handleClick = (e: Event) => {
-  // Stop event from propagating to Slidev
-  e.stopPropagation()
-}
-
 onMounted(() => {
   if (audioRef.value) {
     const audio = audioRef.value
@@ -31,13 +26,30 @@ onMounted(() => {
     audio.addEventListener('loadeddata', () => {
       console.log('Audio loaded successfully')
     })
+    
+    audio.addEventListener('play', () => {
+      console.log('Audio play event fired')
+    })
+    
+    audio.addEventListener('playing', () => {
+      console.log('Audio is actually playing')
+    })
   }
 })
 </script>
 
 <template>
-  <div @click.stop>
-    <audio ref="audioRef" controls :src="audioSrc" preload="metadata" @click.stop>
+  <div @click.stop @mousedown.stop @mouseup.stop style="position: relative; z-index: 100; margin: 10px 0;">
+    <audio 
+      ref="audioRef" 
+      controls 
+      :src="audioSrc" 
+      preload="metadata"
+      @click.stop.prevent
+      @mousedown.stop
+      @mouseup.stop
+      style="width: 100%; max-width: 400px; outline: 2px solid #42b883; border-radius: 4px;"
+    >
       Your browser does not support the audio element.
     </audio>
     <p v-if="errorMsg" style="color: red; font-size: 12px;">{{ errorMsg }}</p>
