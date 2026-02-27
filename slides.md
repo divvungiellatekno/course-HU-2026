@@ -436,10 +436,6 @@ The templating system and the split between language independent and specific co
 │       ├── syllabification
 │       ├── tagsets
 │       └── transcriptions
-├── test
-│   ├── data
-│   ├── src
-│   └── tools
 └── tools
     ├── analysers
     ├── grammarcheckers
@@ -450,6 +446,7 @@ The templating system and the split between language independent and specific co
     ├── tokenisers
     └── tts
 ```
+
 
 ---
 
@@ -903,24 +900,17 @@ layout: two-cols
 * Commercial, closed source since 2014 — North Sámi
 * Open source solution based on HFST, VislCG and ML: Lule, North and South Sámi
 * normaliser pipeline similar to the grammar checker
-* feeding that to the synthesis engine
+* feeding normalised text to the synthesis engine
 * synthesis done using machine learning / neural nets
 * 10 hours of recordings should be enough for high quality synthesis
+
+See also [yle.fi/sapmi](https://yle.fi/sapmi)!
 
 </v-clicks>
 
 ::right::
 
 <div v-after>
-
-North Sámi Male, 5h recordings:
-
-> Lea maid dehálaš ahte juohkehaš beassá ieš mearridit maid hupmá, go buohkat eai soaitte háliidit hupmat dan birra, ja dan galgá maid dohkkehit, lohká son.
-
-<audio controls="controls">
-  <source type="audio/wav" src="/0002_Lea-mai_FP_1000_M_univnet_nrate.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
 
 North Sámi female, old closed-source synthesis:
 
@@ -938,7 +928,15 @@ Same text with new, ML-based synthesis, ca 10 hours:
   <p>Your browser does not support the audio element.</p>
 </audio>
 
+Same text with new Finnish voice:
+
+<audio controls="controls">
+  <source type="audio/wav" src="/Sunna.wav"/>
+  <p>Your browser does not support the audio element.</p>
+</audio>
+
 </div>
+
 
 ---
 layout: two-cols
