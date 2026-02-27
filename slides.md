@@ -916,24 +916,15 @@ North Sámi female, old closed-source synthesis:
 
 > Sámediggi lea Suoma sápmelaččaid alimus politihkalaš orgána, mii ovddasta sápmelaččaid sihke riikkadási ja riikkaidgaskasaš oktavuođain.
 
-<audio controls="controls">
-  <source type="audio/wav" src="5_Samediggi_acapela-test-sentences-1-yle-4418.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+<AudioPlayer src="/5_Samediggi_acapela-test-sentences-1-yle-4418.wav" />
 
 Same text with new, ML-based synthesis, ca 10 hours:
 
-<audio controls="controls">
-  <source type="audio/wav" src="5_Samediggi_FP_F_470univnet_spkr2-4371.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+<AudioPlayer src="/5_Samediggi_FP_F_470univnet_spkr2-4371.wav" />
 
 Same text with new Finnish voice:
 
-<audio controls="controls">
-  <source type="audio/wav" src="Sunna.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+<AudioPlayer src="/Sunna.wav" />
 
 </div>
 
@@ -960,17 +951,11 @@ South Sámi synthesis sample:
 
 Lule:
 
-<audio controls="controls">
-  <source type="audio/wav" src="1_Dalla_FP_660univnet-4416.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+<AudioPlayer src="/1_Dalla_FP_660univnet-4416.wav" />
 
 South:
 
-<audio controls="controls">
-  <source type="audio/wav" src="FULL_Intro_SMA_TTS_HATTFJELLDAL.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+<AudioPlayer src="/FULL_Intro_SMA_TTS_HATTFJELLDAL.wav" />
 
 <br/>
 <br/>
@@ -1005,10 +990,7 @@ layout: two-cols
 
 > ja Norgga sámit riikkasearvvis mun maiddái geahčen dien ee dien ee total reanskkaskáhpa ja oidnen dan ahte ođđamárket diet buolbmát várggáid dá Várjjat guovllus
 
-<audio controls="controls">
-  <source type="audio/wav" src="80_99_north_s_00_001-4499.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+<AudioPlayer src="/80_99_north_s_00_001-4499.wav" />
 
 Generated transcript:
 
@@ -1037,10 +1019,7 @@ layout: two-cols
 
 > Ja mån lav badjánam jåhkå gasska tjielden danna muv mánnávuohta ja muv nuorravuohta årrum.
 
-<audio controls="controls">
-  <source type="audio/wav" src="NRK_Dan_i_diede_jus_i_gatjada_Dalla_ja_dalloj_OF1_002-4726.wav"/>
-  <p>Your browser does not support the audio element.</p>
-</audio>
+<AudioPlayer src="/NRK_Dan_i_diede_jus_i_gatjada_Dalla_ja_dalloj_OF1_002-4726.wav" />
 
 Generated transcript:
 
