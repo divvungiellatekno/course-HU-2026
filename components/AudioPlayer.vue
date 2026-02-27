@@ -1,10 +1,26 @@
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
+
 const props = defineProps<{
   src: string
 }>()
 
-// Automatically adds base path for GitHub Pages
-const audioSrc = import.meta.env.BASE_URL + props.src.replace(/^\//, '')
+// Use new URL() pattern for proper asset handling by Vite
+const audioSrc = computed(() => {
+  // For files in public folder, prepend base URL
+  const base = import.meta.env.BASE_URL
+  const cleanSrc = props.src.startsWith('/') ? props.src.slice(1) : props.src
+  const fullPath = `${base}${cleanSrc}`
+  return fullPath
+})
+
+onMounted(() => {
+  console.log('AudioPlayer mounted:', {
+    originalSrc: props.src,
+    baseUrl: import.meta.env.BASE_URL,
+    resolvedSrc: audioSrc.value
+  })
+})
 </script>
 
 <template>

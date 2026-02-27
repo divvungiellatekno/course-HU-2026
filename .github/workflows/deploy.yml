@@ -32,6 +32,16 @@ jobs:
       - name: Build
         run: npm run build -- --base /course-HU-2026/
 
+      - name: Copy .nojekyll to dist
+        run: cp .nojekyll dist/
+
+      - name: Debug - List dist contents
+        run: |
+          echo "Contents of dist folder:"
+          ls -la dist/
+          echo "WAV files in dist:"
+          find dist/ -name "*.wav" -o -name "*.WAV"
+
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
