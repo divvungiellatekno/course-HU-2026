@@ -25,12 +25,39 @@ onMounted(() => {
   })
   
   if (audioRef.value) {
-    audioRef.value.addEventListener('error', (e) => {
-      console.error('Audio loading error:', e)
-      errorMsg.value = `Error loading: ${audioSrc.value}`
+    const audio = audioRef.value
+    
+    audio.addEventListener('error', (e) => {
+      console.error('Audio error event:', e, audio.error)
+      errorMsg.value = `Error: ${audio.error?.message || 'Unknown error'}`
     })
-    audioRef.value.addEventListener('loadeddata', () => {
+    
+    audio.addEventListener('loadeddata', () => {
       console.log('Audio loaded successfully:', audioSrc.value)
+    })
+    
+    audio.addEventListener('play', () => {
+      console.log('Play event triggered')
+    })
+    
+    audio.addEventListener('playing', () => {
+      console.log('Audio is playing')
+    })
+    
+    audio.addEventListener('pause', () => {
+      console.log('Audio paused')
+    })
+    
+    audio.addEventListener('ended', () => {
+      console.log('Audio ended')
+    })
+    
+    audio.addEventListener('stalled', () => {
+      console.warn('Audio stalled')
+    })
+    
+    audio.addEventListener('suspend', () => {
+      console.log('Audio suspend (normal for lazy loading)')
     })
   }
 })
@@ -38,7 +65,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <audio ref="audioRef" controls="controls">
+    <audio ref="audioRef" controls="controls" preload="metadata">
       <source type="audio/wav" :src="audioSrc"/>
       <p>Your browser does not support the audio element.</p>
     </audio>
