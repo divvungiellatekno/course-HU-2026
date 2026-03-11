@@ -6,6 +6,7 @@ const props = defineProps<{
 }>()
 
 const audioRef = ref<HTMLAudioElement>()
+const containerRef = ref<HTMLDivElement>()
 const errorMsg = ref('')
 
 const audioSrc = computed(() => {
@@ -14,9 +15,35 @@ const audioSrc = computed(() => {
   return `${base}${cleanSrc}`
 })
 
+const testClick = (e: MouseEvent) => {
+  console.log('🖱️ Container clicked!', e.target)
+  
+  // Find what element is at the click position
+  const elementsAtPoint = document.elementsFromPoint(e.clientX, e.clientY)
+  console.log('Elements at click point:', elementsAtPoint.map(el => ({
+    tag: el.tagName,
+    class: el.className,
+    id: el.id,
+    zIndex: window.getComputedStyle(el).zIndex,
+    pointerEvents: window.getComputedStyle(el).pointerEvents
+  })))
+  
+  // Try to play programmatically
+  if (audioRef.value) {
+    console.log('Attempting to play audio programmatically...')
+    audioRef.value.play().then(() => {
+      console.log('✅ Play succeeded!')
+    }).catch(err => {
+      console.error('❌ Play failed:', err)
+    })
+  }
+}
+
 onMounted(() => {
   if (audioRef.value) {
     const audio = audioRef.value
+    
+    audio.style.pointerEvents = 'auto'
     
     audio.addEventListener('error', (e) => {
       console.error('Audio error:', audio.error)
@@ -28,27 +55,34 @@ onMounted(() => {
     })
     
     audio.addEventListener('play', () => {
-      console.log('Audio play event fired')
+      console.log('🎵 Audio play event fired!')
     })
     
     audio.addEventListener('playing', () => {
-      console.log('Audio is actually playing')
+      console.log('🎵 Audio is actually playing!')
+    })
+    
+    audio.addEventListener('click', (e) => {
+      console.log('🖱️ Audio element clicked!')
+      e.stopPropagation()
     })
   }
 })
 </script>
 
 <template>
-  <div @click.stop @mousedown.stop @mouseup.stop style="position: relative; z-index: 100; margin: 10px 0;">
+  <div 
+    ref="containerRef"
+    @click="testClick"
+    style="position: relative; z-index: 9999; margin: 10px 0; pointer-events: auto; background: rgba(66, 184, 131, 0.1); padding: 10px; border: 2px solid #42b883;"
+  >
+    <p style="font-size: 12px; margin-bottom: 5px; color: #42b883;">🔍 Click anywhere in this green box</p>
     <audio 
       ref="audioRef" 
       controls 
       :src="audioSrc" 
       preload="metadata"
-      @click.stop.prevent
-      @mousedown.stop
-      @mouseup.stop
-      style="width: 100%; max-width: 400px; outline: 2px solid #42b883; border-radius: 4px;"
+      style="width: 100%; max-width: 400px; pointer-events: auto; position: relative; z-index: 10000;"
     >
       Your browser does not support the audio element.
     </audio>
