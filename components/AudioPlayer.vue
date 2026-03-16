@@ -15,34 +15,27 @@ const audioSrc = computed(() => {
   return `${base}${cleanSrc}`
 })
 
-const testClick = (e: MouseEvent) => {
-  console.log('🖱️ Container clicked!', e.target)
-  
-  // Find what element is at the click position
-  const elementsAtPoint = document.elementsFromPoint(e.clientX, e.clientY)
-  console.log('Elements at click point:', elementsAtPoint.map(el => ({
-    tag: el.tagName,
-    class: el.className,
-    id: el.id,
-    zIndex: window.getComputedStyle(el).zIndex,
-    pointerEvents: window.getComputedStyle(el).pointerEvents
-  })))
-  
-  // Try to play programmatically
-  if (audioRef.value) {
-    console.log('Attempting to play audio programmatically...')
-    audioRef.value.play().then(() => {
-      console.log('✅ Play succeeded!')
-    }).catch(err => {
-      console.error('❌ Play failed:', err)
-    })
-  }
-}
-
 onMounted(() => {
+  // Remove Slidev v-click from parent elements
+  if (containerRef.value) {
+    let parent = containerRef.value.parentElement
+    while (parent) {
+      if (parent.classList.contains('slidev-vclick-target')) {
+        parent.style.pointerEvents = 'none'
+        console.log('Disabled pointer events on slidev-vclick-target')
+      }
+      parent = parent.parentElement
+      if (parent?.id === 'slide-container') break
+    }
+    
+    // Re-enable on our container
+    if (containerRef.value) {
+      containerRef.value.style.pointerEvents = 'auto'
+    }
+  }
+  
   if (audioRef.value) {
     const audio = audioRef.value
-    
     audio.style.pointerEvents = 'auto'
     
     audio.addEventListener('error', (e) => {
@@ -53,36 +46,18 @@ onMounted(() => {
     audio.addEventListener('loadeddata', () => {
       console.log('Audio loaded successfully')
     })
-    
-    audio.addEventListener('play', () => {
-      console.log('🎵 Audio play event fired!')
-    })
-    
-    audio.addEventListener('playing', () => {
-      console.log('🎵 Audio is actually playing!')
-    })
-    
-    audio.addEventListener('click', (e) => {
-      console.log('🖱️ Audio element clicked!')
-      e.stopPropagation()
-    })
   }
 })
 </script>
 
 <template>
-  <div 
-    ref="containerRef"
-    @click="testClick"
-    style="position: relative; z-index: 9999; margin: 10px 0; pointer-events: auto; background: rgba(66, 184, 131, 0.1); padding: 10px; border: 2px solid #42b883;"
-  >
-    <p style="font-size: 12px; margin-bottom: 5px; color: #42b883;">🔍 Click anywhere in this green box</p>
+  <div ref="containerRef" style="position: relative; z-index: 9999; margin: 10px 0; pointer-events: auto;">
     <audio 
       ref="audioRef" 
       controls 
       :src="audioSrc" 
       preload="metadata"
-      style="width: 100%; max-width: 400px; pointer-events: auto; position: relative; z-index: 10000;"
+      style="width: 100%; max-width: 400px; pointer-events: auto;"
     >
       Your browser does not support the audio element.
     </audio>
